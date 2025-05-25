@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenPath Tech - Innovative Technology Solutions</title>
+    <style>
+        /* Global Styles & Variables */
+        :root {
+            --primary-color: #0D47A1; /* Deep Blue */
+            --secondary-color: #1976D2; /* Medium Blue */
+            --accent-color: #FFAB40; /* Amber/Orange */
+            --text-color: #333333;
+            --light-text-color: #FFFFFF;
+            --bg-color: #FFFFFF;
+            --light-bg-color: #F4F6F8;
+            --border-color: #DDDDDD;
+            --font-family: 'Arial', sans-serif; /* Using a common font for simplicity */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--bg-color);
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.8em;
+        }
+
+        h1 { font-size: 2.8em; }
+        h2 { font-size: 2.2em; }
+        h3 { font-size: 1.5em; }
+
+        p {
+            margin-bottom: 1em;
+            font-size: 1.05em;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--bg-color);
+            padding: 1em 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        /* Added flex styling for logo link */
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        /* Optional: visually hidden text class for accessibility */
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px; 
+            height: 1px; 
+            padding: 0; 
+            margin: -1px; 
+            overflow: hidden; 
+            clip: rect(0,0,0,0); 
+            border: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 1em;
+            padding: 5px 0;
+            position: relative;
+        }
+        nav ul li a .nav-icon {
+            margin-left: 5px;
+            font-size: 0.9em;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+        
+        .language-switcher {
+            margin-left: 20px;
+        }
+
+        .language-switcher select {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--bg-color);
+            color: var(--primary-color);
+            font-size: 0.9em;
+            cursor: pointer;
+        }
+        .language-switcher select:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+
+        .mobile-menu-toggle {
+            display: none; /* Hidden on desktop */
+            font-size: 1.8em;
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text-color);
+            padding: 80px 0;
+            text-align: center;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #hero h1 {
+            color: var(--light-text-color);
+            font-size: 3.5em;
+            margin-bottom: 0.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        #hero p {
+            font-size: 1.4em;
+            margin-bottom: 1.5em;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 15px 30px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background-color: #ffc107; /* Lighter accent */
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Sections General Styling */
+        section {
+            padding: 60px 0;
+        }
+
+        section:nth-child(even) {
+            background-color: var(--light-bg-color);
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.5em;
+            position: relative;
+        }
+        section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+
+        /* Services Section */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-item {
+            background-color: var(--bg-color);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .service-icon {
+            font-size: 3.5em;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .service-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        /* Projects Section */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .project-item {
+            background-color: var(--bg-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .project-item-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-item h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        .project-item p {
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        .project-item a {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        .project-item a:hover {
+            background-color: #ffc107; /* Lighter accent */
+            color: var(--primary-color);
+        }
+
+        /* Multilingual Info Section */
+        #multilingual-info {
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+        }
+        #multilingual-info h2 {
+            color: var(--light-text-color);
+        }
+        #multilingual-info h2::after {
+            background-color: var(--light-text-color);
+        }
+        #multilingual-info p {
+            text-align: center;
+            font-size: 1.2em;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+        .contact-tagline {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .contact-details p {
+            font-size: 1.15em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .contact-details p .contact-icon {
+            font-size: 1.5em;
+            color: var(--accent-color);
+        }
+        .contact-details a {
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .contact-details a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-media {
+            margin-top: 30px;
+        }
+
+        .social-media a {
+            display: inline-flex; /* Changed from inline-block for better alignment with SVG */
+            align-items: center; /* Vertically align icon and text */
+            margin: 0 15px;
+            color: var(--primary-color);
+            font-size: 1.1em;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-media a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        .social-media svg {
+            width: 28px; /* Increased size */
+            height: 28px; /* Increased size */
+            margin-right: 8px; /* Space between icon and text */
+            fill: currentColor; /* Makes SVG color inherit from parent 'a' tag */
+        }
+
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 25px 0;
+        }
+        footer p {
+            margin-bottom: 0;
+            font-size: 0.95em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .project-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+             #hero h1 { font-size: 2.8em; }
+             #hero p { font-size: 1.2em; }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+            h3 { font-size: 1.3em; }
+            #hero h1 { font-size: 2.5em; }
+            #hero p { font-size: 1.1em; }
+
+            header .container {
+                flex-wrap: wrap; /* Allow wrapping for mobile menu */
+            }
+            
+            nav {
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-in-out;
+                order: 3; /* Place nav below logo and toggle */
+            }
+            nav.active {
+                max-height: 300px; /* Adjust as needed */
+                margin-top: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+                width: 100%;
+                text-align: center;
+            }
+            nav ul li a {
+                display: block;
+                padding: 10px;
+            }
+
+            .mobile-menu-toggle {
+                display: block; /* Show on mobile */
+                order: 2; /* Place toggle after logo */
+            }
+            .language-switcher {
+                order: 1; /* Place language switcher before toggle on new line if needed */
+                margin-left: 0;
+                margin-right: auto; /* Push toggle to the right */
+            }
+            .logo {
+                order: 0;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr; /* Stack services on smaller screens */
+            }
+            .project-grid {
+                grid-template-columns: 1fr; /* Stack projects */
+            }
+            .social-media a {
+                margin: 0 10px; /* Reduce margin for social icons */
+            }
+        }
+
+        @media (max-width: 480px) {
+            #hero { padding: 60px 0; min-height: 60vh;}
+            #hero h1 { font-size: 2em; }
+            #hero p { font-size: 1em; }
+            .cta-button { font-size: 1em; padding: 12px 25px; }
+            section { padding: 40px 0; }
+            section h2 { font-size: 1.8em; margin-bottom: 30px;}
+            .contact-details p { flex-direction: column; gap: 5px; }
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#hero" aria-label="OpenPath Tech Home">
+                    <img src="openPath.png" alt="OpenPath Tech Logo" style="height: 50px; width: auto;">
+                    <span data-translate-key="logo_text">OpenPath Tech</span>
+                </a>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="#hero" data-translate-key="nav_home">Home <span class="nav-icon">🏠</span></a></li>
+                    <li><a href="#services" data-translate-key="nav_services">Services <span class="nav-icon">⚙️</span></a></li>
+                    <li><a href="#projects" data-translate-key="nav_projects">Projects <span class="nav-icon">🖼️</span></a></li>
+                    <li><a href="#multilingual-info" data-translate-key="nav_multilingual">Multilingual <span class="nav-icon">🌍</span></a></li>
+                    <li><a href="#contact" data-translate-key="nav_contact">Contact <span class="nav-icon">📞</span></a></li>
+                </ul>
+            </nav>
+            <div class="language-switcher">
+                <select id="lang-select" aria-label="Select language">
+                    <option value="en">English</option>
+                    <option value="am">አማርኛ (Amharic)</option>
+                    <option value="om">Afaan Oromoo</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1 data-translate-key="hero_title">Pioneering Your Digital Future with OpenPath Tech</h1>
+                <p data-translate-key="hero_subtitle">We craft exceptional websites, intuitive student & staff portals, and innovative technology solutions tailored to elevate your success.</p>
+                <a href="#contact" class="cta-button" data-translate-key="hero_cta">Let's Build Together</a>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2 data-translate-key="services_title">Our Core Services</h2>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <div class="service-icon">🌐</div>
+                        <h3 data-translate-key="service1_title">Dynamic Website Development</h3>
+                        <p data-translate-key="service1_desc">From sleek portfolios to robust e-commerce platforms, we build responsive, SEO-friendly websites that captivate and convert.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">🧑‍🎓</div>
+                        <h3 data-translate-key="service2_title">Intelligent Student & Staff Portals</h3>
+                        <p data-translate-key="service2_desc">Streamline operations with secure, user-friendly portals for educational institutions and businesses, enhancing collaboration and efficiency.</p>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">💡</div>
+                        <h3 data-translate-key="service3_title">Bespoke Technology Solutions</h3>
+                        <p data-translate-key="service3_desc">Have a unique challenge? We devise and implement custom tech solutions, from software development to system integrations, driving your vision forward.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 data-translate-key="projects_title">Showcasing Our Innovations</h2>
+                <div class="project-grid">
+                    <div class="project-item">
+                        <img src="guji-zone-proposal.png" alt="Guji Zone Student Association Website" />
+                        <div class="project-item-content">
+                            <h3 data-translate-key="project1_title">Guji Zone Student Association</h3>
+                            <p data-translate-key="project1_desc">Developed a responsive and informative proposal website for the Guji Zone Student Association. This platform clearly outlines their mission for educational advancement and community development initiatives within the Guji Zone.</p>
+                            <a href="https://life181.github.io/Students-Association-in-Guji-Zone/" target="_blank" data-translate-key="project_link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <img src="debela-guye-machinery-rental.png" alt="M Debela Guye Machinery Rental Service Website" />
+                        <div class="project-item-content">
+                             <h3 data-translate-key="project2_title">M Debela Guye Machinery Rental Service</h3>
+                             <p data-translate-key="project2_desc">Engineered a multilingual (Amharic, English, Afaan Oromoo) website for M Debela Guye Machinery Rental Service in Adola Woyu Town, Ethiopia. The site facilitates easy online booking for heavy machinery like loaders, sinotruks, dozers, and excavators.</p>
+                             <a href="https://life181.github.io/Debela-Guye-Machinery-Rental-Service/" target="_blank" data-translate-key="project_link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <img src="hosptial project.png" alt="Adola Woyu Hospital Management System" />
+                        <div class="project-item-content">
+                            <h3 data-translate-key="project4_title">Adola Woyu Hospital Management System</h3>
+                            <p data-translate-key="project4_desc">Currently developing a comprehensive web-based Hospital Management System for Adola Woyu General Hospital. This platform aims to streamline operations across various modules including patient management, appointments, billing, staff coordination, and more, featuring a real-time dashboard for efficient workflow. (Under Development)</p>
+                            <a href="https://life181.github.io/Adola-Woyu-General-Hospital-Management-System/" target="_blank" data-translate-key="project_link">View Project</a>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <img src="debela-guye-rental-app.png" alt="Debela Guye Rental Service App" />
+                        <div class="project-item-content">
+                            <h3 data-translate-key="project3_title">Debela Guye Rental Service App</h3>
+                            <p data-translate-key="project3_desc">Designed and developed a user-friendly mobile application complementing the Debela Guye Machinery Rental Service website. The app offers convenient on-the-go access to browse machinery, check availability, and manage bookings, also with multilingual support.</p>
+                            <a href="#" target="_blank" data-translate-key="project_link">View App Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="multilingual-info">
+            <div class="container">
+                <h2 data-translate-key="multilingual_title">We Speak Your Audience's Language</h2>
+                <p data-translate-key="multilingual_desc">OpenPath Tech is committed to inclusivity. We can develop your websites and portals with full multilingual support, including languages like Afaan Oromoo and Amharic. Connect with a broader audience and make your services accessible to all.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 data-translate-key="contact_title">Let's Start Your Next Project</h2>
+                <p class="contact-tagline" data-translate-key="contact_tagline">Ready to transform your ideas into reality? Reach out to us. We're excited to learn about your project and discuss how we can help you succeed.</p>
+                <div class="contact-details">
+                    <p>
+    <span class="contact-icon">📧</span> 
+    <a href="mailto:openpathtech@gmail.com" data-translate-key="contact_email_text">openpathtech@gmail.com</a>
+</p>
+                    <p><span class="contact-icon">📞</span> <a href="tel:+251929020326" data-translate-key="contact_phone_text">+251929020326 </a></p>
+                    <p><span class="contact-icon">📍</span> <span data-translate-key="contact_address_text">Bole Sub-City, Addis Ababa, Ethiopia </span></p>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/profile.php?id=61576655426438" target="_blank" aria-label="Facebook" data-translate-key="social_facebook">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10s4.5 10 10 10 10-4.49 10-10-4.5-10-10-10zm3.6 10.95h-2.3v7.01h-3.01v-7.01h-1.4v-2.6h1.4v-1.95c0-1.22.53-3.15 3.15-3.15h2.26v2.59h-1.45c-.25 0-.6.13-.6.65v1.86h2.05l-.25 2.6z"/></svg>
+                        <span data-translate-key="social_facebook_text">Facebook</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/openpath-tech-528078367" target="_blank" aria-label="LinkedIn" data-translate-key="social_linkedin">
+    <svg viewBox="0 0 24 24">
+        <path d="M12 2.04c-5.5 0-10 4.49-10 10s4.5 10 10 10 10-4.49 10-10-4.5-10-10-10zM8.09 18.5H5.5V10.41h2.59zm-1.3-9.15c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm10.71 9.15h-2.58v-4.16c0-.99-.02-2.27-.91-2.27s-1.05 1.08-1.05 2.2v4.23h-2.59V10.41h2.48v1.14h.03c.35-.66 1.2-1.35 2.45-1.35 2.62 0 3.1 1.72 3.1 3.96v4.34z"/>
+    </svg>
+    <span data-translate-key="social_linkedin_text">LinkedIn</span>
+</a>
+                    <a href="https://t.me/openPath_Tech" target="_blank" aria-label="Telegram" data-translate-key="social_telegram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10s4.5 10 10 10 10-4.49 10-10-4.5-10-10-10zm5.47 7.01l-2.01 9.43c-.24 1.14-1.01 1.42-1.93.89l-3.05-2.25-1.47 1.41c-.16.16-.3.3-.53.3l.2-3.11 5.57-5.03c.24-.21-.05-.33-.37-.12l-6.87 4.31-3.01-.94c-1.13-.35-1.14-1.15.21-1.71l11.85-4.57c.97-.37 1.83.22 1.53.96z"/></svg>
+                        <span data-translate-key="social_telegram_text">Telegram</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p data-translate-key="footer_text">&copy; 2025 OpenPath Tech. All rights reserved. Your partners in digital innovation.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Translations Store
+        const translations = {
+            en: {
+                logo_text: "OpenPath Tech",
+                nav_home: "Home",
+                nav_services: "Services",
+                nav_projects: "Projects",
+                nav_multilingual: "Multilingual",
+                nav_contact: "Contact",
+                hero_title: "Pioneering Your Digital Future with OpenPath Tech",
+                hero_subtitle: "We craft exceptional websites, intuitive student & staff portals, and innovative technology solutions tailored to elevate your success.",
+                hero_cta: "Let's Build Together",
+                services_title: "Our Core Services",
+                service1_title: "Dynamic Website Development",
+                service1_desc: "From sleek portfolios to robust e-commerce platforms, we build responsive, SEO-friendly websites that captivate and convert.",
+                service2_title: "Intelligent Student & Staff Portals",
+                service2_desc: "Streamline operations with secure, user-friendly portals for educational institutions and businesses, enhancing collaboration and efficiency.",
+                service3_title: "Bespoke Technology Solutions",
+                service3_desc: "Have a unique challenge? We devise and implement custom tech solutions, from software development to system integrations, driving your vision forward.",
+                projects_title: "Showcasing Our Innovations",
+                project1_title: "Guji Zone Student Association",
+                project1_desc: "Developed a responsive and informative proposal website for the Guji Zone Student Association. This platform clearly outlines their mission for educational advancement and community development initiatives within the Guji Zone.",
+                project2_title: "M Debela Guye Machinery Rental Service",
+                project2_desc: "Engineered a multilingual (Amharic, English, Afaan Oromoo) website for M Debela Guye Machinery Rental Service in Adola Woyu Town, Ethiopia. The site facilitates easy online booking for heavy machinery like loaders, sinotruks, dozers, and excavators.",
+                project3_title: "Debela Guye Rental Service App",
+                project3_desc: "Designed and developed a user-friendly mobile application complementing the Debela Guye Machinery Rental Service website. The app offers convenient on-the-go access to browse machinery, check availability, and manage bookings, also with multilingual support.",
+                project4_title: "Adola Woyu Hospital Management System",
+                project4_desc: "Currently developing a comprehensive web-based Hospital Management System for Adola Woyu General Hospital. This platform aims to streamline operations across various modules including patient management, appointments, billing, staff coordination, and more, featuring a real-time dashboard for efficient workflow. (Under Development)",
+                project_link: "View Project",
+                multilingual_title: "We Speak Your Audience's Language",
+                multilingual_desc: "OpenPath Tech is committed to inclusivity. We can develop your websites and portals with full multilingual support, including languages like Afaan Oromoo and Amharic. Connect with a broader audience and make your services accessible to all.",
+                contact_title: "Let's Start Your Next Project",
+                contact_tagline: "Ready to transform your ideas into reality? Reach out to us. We're excited to learn about your project and discuss how we can help you succeed.",
+                contact_email_text: "openpathtech@gmail.com",
+                contact_phone_text: "+251 912 345 678 (Ethiopia Example)",
+                contact_address_text: "Bole Sub-City, Addis Ababa, Ethiopia (Example Address)",
+                social_facebook_text: "Facebook",
+                social_linkedin_text: "LinkedIn",
+                social_telegram_text: "Telegram",
+                footer_text: "&copy; 2025 OpenPath Tech. All rights reserved. Your partners in digital innovation."
+            },
+            am: { // NOTE: Amharic translations for projects should be updated based on the new English descriptions.
+                logo_text: "ኦፕንፓዝ ቴክ",
+                nav_home: "ዋና ገጽ",
+                nav_services: "አገልግሎቶች",
+                nav_projects: "ፕሮጀክቶች",
+                nav_multilingual: "ባለብዙ ቋንቋ",
+                nav_contact: "እውቂያ",
+                hero_title: "የዲጂታል የወደፊትዎን በኦፕንፓዝ ቴክ ይምሩ",
+                hero_subtitle: "ለስኬትዎ የተዘጋጁ ድንቅ ድረ-ገጾችን፣ ለተማሪዎችና ሰራተኞች ምቹ የሆኑ ፖርታሎችን እና የፈጠራ የቴክኖሎጂ መፍትሄዎችን እንሰራለን።",
+                hero_cta: "በጋራ እንገንባ",
+                services_title: "ዋና ዋና አገልግሎቶቻችን",
+                service1_title: "ተለዋዋጭ የድረ-ገጽ ግንባታ",
+                service1_desc: "ከቀላል ፖርትፎሊዮዎች እስከ ጠንካራ የኢ-ኮሜርስ መድረኮች፣ ምላሽ ሰጪ፣ ለፍለጋ ፕሮግራሞች ተስማሚ የሆኑ ድረ-ገጾችን እንገነባለን።",
+                service2_title: "ብልህ የተማሪ እና የሰራተኛ ፖርታሎች",
+                service2_desc: "ለትምህርት ተቋማት እና ንግዶች ደህንነታቸው የተጠበቀ እና ለአጠቃቀም ቀላል የሆኑ ፖርታሎችን በመፍጠር ስራዎችን ያቀላጥፉ።",
+                service3_title: "ብጁ የቴክኖሎጂ መፍትሄዎች",
+                service3_desc: "ልዩ ፈተና አለዎት? ከሶፍትዌር ልማት እስከ ስርዓት ውህደት ድረስ ብጁ የቴክኖሎጂ መፍትሄዎችን እንቀርጻለን።",
+                projects_title: "ፈጠራዎቻችንን በማሳየት ላይ",
+                project1_title: "የጉጂ ዞን ተማሪዎች ማህበር", // Placeholder - update
+                project1_desc: "ለጉጂ ዞን ተማሪዎች ማህበር ምላሽ ሰጪ እና መረጃ ሰጭ የፕሮፖዛል ድረ-ገጽ ተዘጋጅቷል። ይህ መድረክ በጉጂ ዞን ውስጥ ለትምህርት እድገት እና ለማህበረሰብ ልማት ተነሳሽነት ያላቸውን ተልዕኮ በግልፅ ያስቀምጣል።", // Placeholder - update
+                project2_title: "ም ደበላ ጉዬ የከባድ መሣሪያዎች ኪራይ አገልግሎት", // Placeholder - update
+                project2_desc: "በአዶላ ወዩ ከተማ፣ ኢትዮጵያ ለሚገኘው ም ደበላ ጉዬ የከባድ መሣሪያዎች ኪራይ አገልግሎት ባለብዙ ቋንቋ (አማርኛ፣ እንግሊዝኛ፣ አፋን ኦሮሞ) ድረ-ገጽ ተሰርቷል። ድረ-ገጹ እንደ ሎደር፣ ሲኖትራክ፣ ዶዘር እና ኤክስካቫተር ያሉ ከባድ መሣሪያዎችን በቀላሉ ኦንላይን ለመከራየት ያስችላል።", // Placeholder - update
+                project3_title: "ደበላ ጉዬ የኪራይ አገልግሎት መተግበሪያ", // Placeholder - update
+                project3_desc: "የደበላ ጉዬ የከባድ መሣሪያዎች ኪራይ አገልግሎት ድረ-ገጽን የሚያሟላ ለአጠቃቀም ቀላል የሆነ የሞባይል መተግበሪያ ተቀርጾ ተዘጋጅቷል። መተግበሪያው በጉዞ ላይ እያሉ መሣሪያዎችን ለማሰስ፣ መኖራቸውን ለማረጋገጥ እና የኪራይ ሂደቶችን ለማስተዳደር ምቹ መዳረሻን ይሰጣል፣ እንዲሁም ባለብዙ ቋንቋ ድጋፍ አለው።", // Placeholder - update
+                project4_title: "የአዶላ ወዩ ሆስፒታል አስተዳደር ስርዓት", // Placeholder - update
+                project4_desc: "በአሁኑ ወቅት ለአዶላ ወዩ አጠቃላይ ሆስፒታል አጠቃላይ በድር ላይ የተመሰረተ የሆስፒታል አስተዳደር ስርዓት እየተዘጋጀ ነው። ይህ መድረክ የታካሚ አስተዳደርን፣ ቀጠሮዎችን፣ ክፍያዎችን፣ የሰራተኞች ቅንጅትን እና ሌሎችንም ጨምሮ በተለያዩ ሞጁሎች ላይ ስራዎችን ለማቀላጠፍ ያለመ ሲሆን፣ ቀልጣፋ የስራ ፍሰትን የሚያሳይ የእውነተኛ ጊዜ ዳሽቦርድ ይኖረዋል። (በልማት ላይ)", // Placeholder - update
+                project_link: "ፕሮጀክቱን ይመልከቱ",
+                multilingual_title: "የደንበኞችዎን ቋንቋ እንናገራለን",
+                multilingual_desc: "ኦፕንፓዝ ቴክ ለሁሉን አቀፍነት ቁርጠኛ ነው። እንደ አፋን ኦሮሞ እና አማርኛ ያሉ ቋንቋዎችን ጨምሮ ድረ-ገጾችዎን እና ፖርታሎችዎን በሙሉ የብዙ ቋንቋ ድጋፍ ማልማት እንችላለን።",
+                contact_title: "ቀጣዩን ፕሮጀክትዎን እንጀምር",
+                contact_tagline: "ሀሳቦችዎን ወደ እውነታ ለመቀየር ዝግጁ ነዎት? ያግኙን። ስለ ፕሮጀክትዎ ለመስማት እና እንዴት ልንረዳዎ እንደምንችል ለመወያየት እንጓጓለን።",
+                contact_email_text: "openpathtech@gmail.com",
+                contact_phone_text: "+251929020326",
+                contact_address_text: "ቦሌ ክፍለ ከተማ፣ አዲስ አበባ፣ ኢትዮጵያ ",
+                social_facebook_text: "ፌስቡክ",
+                social_linkedin_text: "ሊንክድኢን",
+                social_telegram_text: "ቴሌግራም",
+                footer_text: "&copy; 2025 ኦፕንፓዝ ቴክ። ሁሉም መብቶች የተጠበቁ ናቸው። የእርስዎ የዲጂታል ፈጠራ አጋሮች።"
+            },
+            om: { // NOTE: Afaan Oromoo translations for projects should be updated based on the new English descriptions.
+                logo_text: "OpenPath Tech",
+                nav_home: "Fuula Jalqabaa",
+                nav_services: "Tajaajilawoon",
+                nav_projects: "Pirojektiwwan",
+                nav_multilingual: "Afaan Hedduu",
+                nav_contact: "Quunnamtii",
+                hero_title: "OpenPath Tech Waliin Booddee Keessan Dijitaalaa Kalaqaa",
+                hero_subtitle: "Websaayitota addaa, portaloota barattootaa fi hojjettootaa salphaatti fayyadamuu danda'an, fi furmaatawwan teknooloojii haaraa milkaa'ina keessan guddisuuf tolchinee ni ijaarra.",
+                hero_cta: "Waliin Haa Ijaarru",
+                services_title: "Tajaajilawwan Keenya Bu'uuraa",
+                service1_title: "Websaayitii Dinamikii Ijaaruu",
+                service1_desc: "Poortfooliyoowwan salphaa irraa kaasee hanga marsariitiiwwan gurgurtaa interneetii cimaatti, websaayitota deebii kennan, SEO-mijataa ta'an kanneen hawwatan fi jijjiiran ni ijaarra.",
+                service2_title: "Portaloota Barattootaa fi Hojjettootaa Ogummaa Qaban",
+                service2_desc: "Dhaabbilee barnootaa fi daldalaatiif portaloota nageenyummaan isaanii eegamee fi fayyadamuuf salphaa ta'an uumuun hojiiwwan saffisiisaa.",
+                service3_title: "Furmaatawwan Teknoloji Addaa",
+                service3_desc: "Rakkoo addaa qabduu? Misooma sooftiweerii irraa kaasee hanga sirna walitti hidhamiinsaatti furmaatawwan teknooloojii addaa ni qopheessina.",
+                projects_title: "Kalaqa Keenya Agarsiisuu",
+                project1_title: "Waldaa Barattoota Godina Gujii", // Placeholder - update
+                project1_desc: "Waldaa Barattoota Godina Gujiitiif weebsaayitiin yaada dhiyeessaa deebii kennuu fi odeeffannoo qabu qophaa'eera. Marsariitiin kun ergama isaanii gama barnootaa fi sochiiwwan misooma hawaasaa Godina Gujii keessatti ifatti agarsiisa.", // Placeholder - update
+                project2_title: "Tajaajila Kireeffama Maashinarii M Debelaa Guyyee", // Placeholder - update
+                project2_desc: "Magaalaa Adoolaa Woyyuu, Itoophiyaatti, Tajaajila Kireeffama Maashinarii M Debelaa Guyyeetiif weebsaayitiin afaanota hedduu (Amaariffa, Ingiliffa, Afaan Oromoo) qabu hojjetameera. Marsariitiin kun maashinariiwwan gurguddoo kan akka loodarii, siinootiraakii, doozarii fi ekskaavatarii salphaatti interneetiin kireeffachuuf ni mijata.", // Placeholder - update
+                project3_title: "Appilikeeshinii Tajaajila Kireeffamaa Debelaa Guyyee", // Placeholder - update
+                project3_desc: "Appilikeeshiniin moobaayilaa fayyadamuuf salphaa ta'ee fi weebsaayitii Tajaajila Kireeffama Maashinarii Debelaa Guyyee wajjin wal simu dizaayinii ta'ee hojjetameera. Appilikeeshinichi yeroo imalaa maashinariiwwan ilaaluu, argamuu isaanii mirkaneessuu fi hojii kireeffamaa bulchuuf carraa mijataa kenna, akkasumas deeggarsa afaanota hedduu qaba.", // Placeholder - update
+                project4_title: "Sirna Bulchiinsa Hospitaala Adoolaa Woyyuu", // Placeholder - update
+                project4_desc: "Yeroo ammaa kana Hospitaala Waliigalaa Adoolaa Woyyuutiif sirni bulchiinsa hospitaalaa weeb irratti hundaa'e guutuu ta'e qophaa'aa jira. Marsariitiin kun bulchiinsa dhukkubsattootaa, beellama, kaffaltii, walta'iinsa hojjettootaa fi kanneen biroo dabalatee moduulota adda addaa keessatti hojiiwwan saffisiisuuf kan kaayyeffate yoo ta'u, daashboordii yeroo qabatamaa agarsiisuunis hojimaata bu'a qabeessa ni taasisa. (Misooma irra jira)", // Placeholder - update
+                project_link: "Pirojekticha Ilaali",
+                multilingual_title: "Afaan Dhaggeeffattoota Keessanii Ni Dubbanna",
+                multilingual_desc: "OpenPath Tech hunda hammachuuf kutannoo qaba. Websaayitotaa fi portaloota keessan deeggarsa afaan hedduu guutuu, kan akka Afaan Oromoo fi Amaariffaa dabalatee misoomsuu dandeenya.",
+                contact_title: "Pirojektii Keessan Itti Aanu Haa Jalqabnu",
+                contact_tagline: "Yaada keessan gara dhugoomsuutti jijjiiruuf qophii? Nu qunnamaa. Pirojektii keessan dhaga'uu fi akkamitti akka isin gargaaruu dandeenyu mari'achuuf ni hawwina.",
+                contact_email_text: "openpathtech@gmail.com",
+                contact_phone_text: "+251929020326",
+                contact_address_text: "Kutaa Magaalaa Boolee, Finfinnee, Itoophiyaa ",
+                social_facebook_text: "Feesbuukii",
+                social_linkedin_text: "LinkedIn",
+                social_telegram_text: "Telegram",
+                footer_text: "&copy; 2025 OpenPath Tech. Mirgi hundi seeraan eegamaadha. Hojiiwwan dijitaalaa haaraa keessatti hirmaattota keessan."
+            }
+        };
+
+        // Language Switcher Logic
+        const langSelect = document.getElementById('lang-select');
+        const translatableElements = document.querySelectorAll('[data-translate-key]');
+
+        function translatePage(lang) {
+            translatableElements.forEach(el => {
+                const key = el.getAttribute('data-translate-key');
+                if (translations[lang] && translations[lang][key]) {
+                    el.innerHTML = translations[lang][key]; // Use innerHTML to support HTML in translations like &copy;
+                }
+            });
+            document.documentElement.lang = lang; // Update the lang attribute of the HTML tag
+        }
+
+        langSelect.addEventListener('change', (event) => {
+            translatePage(event.target.value);
+        });
+
+        // Initialize with English
+        document.addEventListener('DOMContentLoaded', () => {
+            translatePage('en'); 
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            menuToggle.textContent = nav.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Optional: Close mobile menu when a link is clicked
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                    menuToggle.textContent = '☰';
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
